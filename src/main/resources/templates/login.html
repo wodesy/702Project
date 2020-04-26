@@ -115,19 +115,25 @@
 					data:{"username":username,"pwd":pwd},
 					success:function (data) {
 						if(data === 'success'){
-							layer.alert('登录成功，后续页面正在开发，敬请期待！');
+							window.location.href='/adminPage';
 						}else if(data === 'NotIsVaild'){
-							layer.alert('该账户已被锁定！');
+                            $("#pwd").val('');
+                            layer.alert('该账户已被锁定！');
 						}
 						else if(data === 'fail'){
-							layer.alert('密码错误，请检查后重试！');
+                            $("#pwd").val('');
+                            layer.alert('密码错误，请检查后重试！');
 						}else if(data === 'NotFoundUser'){
-							layer.alert('此用户不存在！');
+                            $("#username").val('');
+                            $("#pwd").val('');
+                            layer.alert('此用户不存在！');
 						}else{
-							layer.alert('系统异常，请稍后再试！');
+                            $("#pwd").val('');
+                            layer.alert('系统异常，请稍后再试！');
 						}
 					},
 					error:function () {
+                        $("#pwd").val('');
 						layer.alert('登录异常，请稍后再试！');
 					}
 				});
